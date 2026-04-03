@@ -1,31 +1,38 @@
-# Hardcoded values for the season and plant type
-season = "summer"  # TODO: Replace with input() to allow user interaction.
-plant_type = "flower"  # TODO: Replace with input() to allow user interaction.
+def get_gardening_advice(season, plant_type):
+    """
+    Returns specific gardening advice based on the season and plant type.
+    Uses dictionary lookups instead of long if-elif chains.
+    """
+    
+    # Data stored in dictionaries for easy updates
+    season_advice = {
+        "summer": "Water your plants regularly and provide some shade.",
+        "winter": "Protect your plants from frost with covers.",
+        "spring": "Prepare the soil and plant early seeds.",
+        "autumn": "Clear fallen leaves and prepare for the cold."
+    }
 
-# Variable to hold gardening advice
-advice = ""
+    plant_advice = {
+        "flower": "Use fertiliser to encourage blooms.",
+        "vegetable": "Keep an eye out for pests!",
+        "herb": "Trim regularly to encourage new growth."
+    }
 
-# Determine advice based on the season
-if season == "summer":
-    advice += "Water your plants regularly and provide some shade.\n"
-elif season == "winter":
-    advice += "Protect your plants from frost with covers.\n"
-else:
-    advice += "No advice for this season.\n"
+    # Retrieve advice with a fallback default if the key isn't found
+    s_info = season_advice.get(season.lower(), "No advice for this season.")
+    p_info = plant_advice.get(plant_type.lower(), "No advice for this type of plant.")
 
-# Determine advice based on the plant type
-if plant_type == "flower":
-    advice += "Use fertiliser to encourage blooms."
-elif plant_type == "vegetable":
-    advice += "Keep an eye out for pests!"
-else:
-    advice += "No advice for this type of plant."
+    return f"{s_info}\n{p_info}"
 
-# Print the generated advice
-print(advice)
+def main():
+    # TODO: Replace with input() to allow user interaction (addressed below)
+    current_season = input("Enter the current season (e.g., summer, winter): ").strip()
+    current_plant = input("Enter the plant type (e.g., flower, vegetable): ").strip()
 
-# TODO: Examples of possible features to add:
-# - Add detailed comments explaining each block of code.
-# - Refactor the code into functions for better readability and modularity.
-# - Store advice in a dictionary for multiple plants and seasons.
-# - Recommend plants based on the entered season.
+    # Get and print the advice
+    result = get_gardening_advice(current_season, current_plant)
+    print("\n--- Your Gardening Advice ---")
+    print(result)
+
+if __name__ == "__main__":
+    main()
